@@ -1,0 +1,12 @@
+<li class="items js-items">
+    <h2 class="title">{{name}}</h2>
+    <dir class="main-item-container">
+        <div class="discription-container">
+            <p class="capital subTitle">Capital: <span class="subTitle-text">{{capital}}</span></p>
+            <p class="population subTitle">Population: <span class="subTitle-text">{{population}}</span></p>
+            <ul class="languages-list list subTitle">Languages: {{#each languages}} <li class="languages-item">
+                    <span class="subTitle-text">{{this.name}}</span> </li> {{/each}} </ul>
+        </div>
+        <div class="photo-conteiner"><img class="photo" src={{flag}} alt="{{name}} "></div>
+    </dir>
+</li>
