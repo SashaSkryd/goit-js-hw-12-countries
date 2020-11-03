@@ -1,8 +1,10 @@
 import ListTlt from '../template/listTemplate.hbs'
 import fetchCountries from './fetchCountries'
-import * as notification from './notification'
+import './notification'
 import './styles.css';
 import debounce from "lodash.debounce";
+import { alert, notice, info, success, error } from '@pnotify/core';
+
 
 const refs = {
     list: document.querySelector('.list'),
@@ -16,20 +18,20 @@ function redus (event){
     const inputValue = form.value; 
     console.log(inputValue);
     fetchCountries(inputValue)
-    .then(data => data.map(el => {
+    .then(data => {
         if (data.length === 1) {
-            updateItem(el)
+            updateItem(data[0])
             return
         }
         else if (data.length <= 10) {
-            updateList(el)
+            data.forEach(el => updateList(el))
             return
         } 
         else if (data.length >= 11) {
-            notification.showNotification()
+            error('Too many mach found. Pleace enter a more specific query!')
             return
         }
-    }))
+    })
     .catch(error => error)
     refs.list.innerHTML = ''
 }
